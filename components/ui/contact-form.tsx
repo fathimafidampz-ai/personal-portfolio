@@ -2,11 +2,6 @@
 
 import React, { useState } from "react";
 
-/**
- * Contact Form Component
- * Beautiful form with validation and animations
- */
-
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
@@ -24,6 +19,7 @@ export default function ContactForm() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
   const validateEmail = (email: string) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -59,16 +55,15 @@ export default function ContactForm() {
     }
 
     setErrors(newErrors);
-    return !Object.values(newErrors).some(error => error !== "");
+    return !Object.values(newErrors).some((error) => error !== "");
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    
-    // Clear error when user starts typing
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
     if (errors[name as keyof typeof errors]) {
-      setErrors(prev => ({ ...prev, [name]: "" }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
@@ -80,31 +75,59 @@ export default function ContactForm() {
     }
 
     setIsSubmitting(true);
+    setSubmitError(false);
 
-    // Simulate form submission (replace with your actual API call)
-    setTimeout(() => {
-      console.log("Form submitted:", formData);
-      setIsSubmitting(false);
-      setSubmitSuccess(true);
-      
-      // Reset form
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "310be811-5a97-4ae1-af3e-48024214e4c0", // ← REPLACE THIS WITH YOUR KEY
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
       });
 
-      // Hide success message after 5 seconds
+      const result = await response.json();
+
+      if (result.success) {
+        console.log("Email sent successfully:", result);
+        setSubmitSuccess(true);
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+
+        setTimeout(() => {
+          setSubmitSuccess(false);
+        }, 5000);
+      } else {
+        console.error("Email send failed:", result);
+        setSubmitError(true);
+        setTimeout(() => {
+          setSubmitError(false);
+        }, 5000);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setSubmitError(true);
       setTimeout(() => {
-        setSubmitSuccess(false);
+        setSubmitError(false);
       }, 5000);
-    }, 1500);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      
       {/* Success Message */}
       {submitSuccess && (
         <div className="bg-green-100 dark:bg-green-900/30 border border-green-400 dark:border-green-700 text-green-700 dark:text-green-400 px-6 py-4 rounded-xl animate-slide-down">
@@ -113,6 +136,19 @@ export default function ContactForm() {
             <div>
               <p className="font-semibold">Message sent successfully!</p>
               <p className="text-sm">I&apos;ll get back to you as soon as possible.</p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Error Message */}
+      {submitError && (
+        <div className="bg-red-100 dark:bg-red-900/30 border border-red-400 dark:border-red-700 text-red-700 dark:text-red-400 px-6 py-4 rounded-xl animate-slide-down">
+          <div className="flex items-center">
+            <span className="text-2xl mr-3">❌</span>
+            <div>
+              <p className="font-semibold">Failed to send message</p>
+              <p className="text-sm">Please try again or email me directly.</p>
             </div>
           </div>
         </div>
@@ -130,15 +166,11 @@ export default function ContactForm() {
           value={formData.name}
           onChange={handleChange}
           className={`w-full px-4 py-3 rounded-xl border ${
-            errors.name 
-              ? "border-red-500 dark:border-red-500" 
-              : "border-gray-300 dark:border-gray-600"
+            errors.name ? "border-red-500 dark:border-red-500" : "border-gray-300 dark:border-gray-600"
           } bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 dark:focus:ring-orange-400 transition-all duration-200`}
           placeholder="John Doe"
         />
-        {errors.name && (
-          <p className="mt-1 text-sm text-red-500 dark:text-red-400">{errors.name}</p>
-        )}
+        {errors.name && <p className="mt-1 text-sm text-red-500 dark:text-red-400">{errors.name}</p>}
       </div>
 
       {/* Email Field */}
@@ -153,15 +185,11 @@ export default function ContactForm() {
           value={formData.email}
           onChange={handleChange}
           className={`w-full px-4 py-3 rounded-xl border ${
-            errors.email 
-              ? "border-red-500 dark:border-red-500" 
-              : "border-gray-300 dark:border-gray-600"
+            errors.email ? "border-red-500 dark:border-red-500" : "border-gray-300 dark:border-gray-600"
           } bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 dark:focus:ring-orange-400 transition-all duration-200`}
           placeholder="john@example.com"
         />
-        {errors.email && (
-          <p className="mt-1 text-sm text-red-500 dark:text-red-400">{errors.email}</p>
-        )}
+        {errors.email && <p className="mt-1 text-sm text-red-500 dark:text-red-400">{errors.email}</p>}
       </div>
 
       {/* Subject Field */}
@@ -176,15 +204,11 @@ export default function ContactForm() {
           value={formData.subject}
           onChange={handleChange}
           className={`w-full px-4 py-3 rounded-xl border ${
-            errors.subject 
-              ? "border-red-500 dark:border-red-500" 
-              : "border-gray-300 dark:border-gray-600"
+            errors.subject ? "border-red-500 dark:border-red-500" : "border-gray-300 dark:border-gray-600"
           } bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 dark:focus:ring-orange-400 transition-all duration-200`}
           placeholder="Project Inquiry"
         />
-        {errors.subject && (
-          <p className="mt-1 text-sm text-red-500 dark:text-red-400">{errors.subject}</p>
-        )}
+        {errors.subject && <p className="mt-1 text-sm text-red-500 dark:text-red-400">{errors.subject}</p>}
       </div>
 
       {/* Message Field */}
@@ -199,15 +223,11 @@ export default function ContactForm() {
           onChange={handleChange}
           rows={6}
           className={`w-full px-4 py-3 rounded-xl border ${
-            errors.message 
-              ? "border-red-500 dark:border-red-500" 
-              : "border-gray-300 dark:border-gray-600"
+            errors.message ? "border-red-500 dark:border-red-500" : "border-gray-300 dark:border-gray-600"
           } bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 dark:focus:ring-orange-400 transition-all duration-200 resize-none`}
           placeholder="Tell me about your project or inquiry..."
         />
-        {errors.message && (
-          <p className="mt-1 text-sm text-red-500 dark:text-red-400">{errors.message}</p>
-        )}
+        {errors.message && <p className="mt-1 text-sm text-red-500 dark:text-red-400">{errors.message}</p>}
       </div>
 
       {/* Submit Button */}
@@ -218,9 +238,18 @@ export default function ContactForm() {
       >
         {isSubmitting ? (
           <span className="flex items-center justify-center">
-            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white dark:text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <svg
+              className="animate-spin -ml-1 mr-3 h-5 w-5 text-white dark:text-gray-900"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
             </svg>
             Sending...
           </span>

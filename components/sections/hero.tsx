@@ -44,7 +44,7 @@ export default function Hero() {
           <div className="text-center lg:text-left space-y-8 order-2 lg:order-1">
             <div className="animate-fade-in">
               <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 font-medium">
-                👋 Welcome to my portfolio
+                 Welcome to my portfolio
               </p>
             </div>
 
@@ -53,7 +53,8 @@ export default function Hero() {
                 Hi, I am
               </h1>
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold gradient-text leading-tight">
-                Fathima Fida M
+                Fathima <br />
+                Fida M
               </h1>
             </div>
 

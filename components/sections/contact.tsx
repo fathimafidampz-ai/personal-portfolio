@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import ContactForm from "@/components/ui/contact-form";
+import ContactForm from "../ui/contact-form";
+import { FaEnvelope, FaGithub, FaLinkedin, FaPhoneAlt, FaMapMarkerAlt, FaGlobe } from "react-icons/fa";
 
 export default function Contact() {
   const [headerVisible, setHeaderVisible] = useState(false);
@@ -59,13 +60,13 @@ export default function Contact() {
         <div ref={headerRef} className={headerVisible ? "text-center mb-16 animate-fade-in" : "text-center mb-16 opacity-0"}>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold gradient-text mb-4">Get In Touch</h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? I&apos;d love to hear from you!
+            Have a project in mind or want to collaborate? I would love to hear from you!
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div ref={formRef} className={formVisible ? "animate-slide-left" : "opacity-0"}>
-            <div className="bg-gray-50 dark:bg-gray-800/50 rounded-3xl p-8 border border-gray-200 dark:border-gray-700">
+            <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 border border-gray-200 dark:border-gray-700">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Send me a message</h3>
               <ContactForm />
             </div>
@@ -75,16 +76,16 @@ export default function Contact() {
             <div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Contact Information</h3>
               <div className="space-y-4">
-                <a href="mailto:fathimafida@example.com" className="flex items-start p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-orange-400 dark:hover:border-orange-500 transition-all duration-300 hover:shadow-lg group">
-                  <span className="text-3xl mr-4 group-hover:scale-110 transition-transform duration-300">📧</span>
+                <a href="mailto:fathimaahofficial@gmail.com" className="flex items-start p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-orange-400 dark:hover:border-orange-500 transition-all duration-300 hover:shadow-lg group">
+                  <FaEnvelope className="text-3xl mr-4 text-orange-500 group-hover:scale-110 transition-transform duration-300" />
                   <div>
                     <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Email</h4>
                     <p className="text-gray-600 dark:text-gray-400">fathimaahofficial@gmail.com</p>
                   </div>
                 </a>
 
-                <a href="tel:+911234567890" className="flex items-start p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-orange-400 dark:hover:border-orange-500 transition-all duration-300 hover:shadow-lg group">
-                  <span className="text-3xl mr-4 group-hover:scale-110 transition-transform duration-300">📱</span>
+                <a href="tel:+919048935240" className="flex items-start p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-orange-400 dark:hover:border-orange-500 transition-all duration-300 hover:shadow-lg group">
+                  <FaPhoneAlt className="text-3xl mr-4 text-green-500 group-hover:scale-110 transition-transform duration-300" />
                   <div>
                     <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Phone</h4>
                     <p className="text-gray-600 dark:text-gray-400">+91 9048935240</p>
@@ -92,7 +93,7 @@ export default function Contact() {
                 </a>
 
                 <div className="flex items-start p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
-                  <span className="text-3xl mr-4">📍</span>
+                  <FaMapMarkerAlt className="text-3xl mr-4 text-red-500" />
                   <div>
                     <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Location</h4>
                     <p className="text-gray-600 dark:text-gray-400">Malappuram, India</p>
@@ -105,19 +106,17 @@ export default function Contact() {
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Connect With Me</h3>
               <div className="grid grid-cols-2 gap-4">
                 <a href="https://github.com/fathimafidampz-ai" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-orange-400 dark:hover:border-orange-500 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-                  <span className="text-3xl mr-3">🐙</span>
+                  <FaGithub className="text-3xl mr-3 text-gray-900 dark:text-white" />
                   <span className="font-semibold text-gray-900 dark:text-white">GitHub</span>
                 </a>
 
                 <a href="https://www.linkedin.com/in/fathima-fida-m-a145b0379/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-orange-400 dark:hover:border-orange-500 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-                  <span className="text-3xl mr-3">💼</span>
+                  <FaLinkedin className="text-3xl mr-3 text-blue-600" />
                   <span className="font-semibold text-gray-900 dark:text-white">LinkedIn</span>
                 </a>
 
-                
-
-                <a href="https://yourwebsite.com" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-orange-400 dark:hover:border-orange-500 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-                  <span className="text-3xl mr-3">🌐</span>
+                <a href="#home" className="flex items-center justify-center p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-orange-400 dark:hover:border-orange-500 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                  <FaGlobe className="text-3xl mr-3 text-orange-600" />
                   <span className="font-semibold text-gray-900 dark:text-white">Portfolio</span>
                 </a>
               </div>
