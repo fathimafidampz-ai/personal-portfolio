@@ -2,6 +2,10 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import SkillCard from "../ui/skill-card";
+import { FaPython } from "react-icons/fa";
+import { SiDjango } from "react-icons/si";
+import { SiKubernetes } from "react-icons/si";
+import { SiSupabase } from "react-icons/si";
 
 // Frontend icons
 import {
@@ -65,21 +69,60 @@ export default function Skills() {
   /* ---------------- SKILLS ---------------- */
 
   const frontendSkills = [
-  { name: "HTML5", icon: FaHtml5, proficiency: 95, category: "frontend" },
-  { name: "CSS3", icon: FaCss3Alt, proficiency: 90, category: "frontend" },
-  { name: "JavaScript", icon: FaJs, proficiency: 90, category: "frontend" },
-  { name: "React", icon: FaReact, proficiency: 85, category: "frontend" },
-  { name: "Next.js", icon: SiNextdotjs, proficiency: 85, category: "frontend" },
+  {
+    name: "HTML5",
+    icon: FaHtml5,
+    proficiency: 95,
+    category: "frontend",
+  },
+  {
+    name: "CSS3",
+    icon: FaCss3Alt,
+    proficiency: 90,
+    category: "frontend",
+  },
+  {
+    name: "JavaScript",
+    icon: FaJs,
+    proficiency: 90,
+    category: "frontend",
+  },
+  {
+    name: "React",
+    icon: FaReact,
+    proficiency: 85,
+    category: "frontend",
+  },
+  {
+    name: "Next.js",
+    icon: SiNextdotjs,
+    proficiency: 85,
+    category: "frontend",
+  },
+  {
+    name: "Tailwind CSS",
+    icon: SiTailwindcss,
+    proficiency: 75,
+    category: "frontend",
+  },
 ];
 
 
-  const backendSkills = [
+
+ const backendSkills = [
   {
     name: "Node.js",
     icon: FaNodeJs,
     proficiency: 85,
     category: "backend",
   },
+  {
+  name: "Supabase",
+  icon: SiSupabase,
+  proficiency: 75,
+  category: "backend",
+},
+
   {
     name: "Express.js",
     icon: SiExpress,
@@ -104,7 +147,20 @@ export default function Skills() {
     proficiency: 85,
     category: "backend",
   },
+  {
+    name: "Python",
+    icon: FaPython,
+    proficiency: 80,
+    category: "backend",
+  },
+  {
+    name: "Django",
+    icon: SiDjango,
+    proficiency: 75,
+    category: "backend",
+  },
 ];
+
 
   const toolsSkills = [
   {
@@ -137,11 +193,17 @@ export default function Skills() {
     proficiency: 85,
     category: "tools",
   },
+{
+    name: "Kubernetes",
+    icon: SiKubernetes,
+    proficiency: 70,
+    category: "tools",
+  },
 
   // AI tools (no logos uploaded)
   {
     name: "Claude AI",
-    icon: Bot,          // 👈 AI bot symbol
+    icon: Bot,          //  AI bot symbol
     proficiency: 80,
     category: "tools",
   },

@@ -44,22 +44,22 @@ export default function Projects() {
       title: "Intelligent Tutoring System Admin Dashboard",
       description:
         "Comprehensive admin dashboard for managing an AI-powered tutoring platform. Features include analytics, student progress tracking, and real-time monitoring.",
-      technologies: ["React", "Node.js", "MongoDB", "Chart.js", "Express"],
-      image: "🎓",
-      githubLink: "#",
+      technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion","SQL","Git & GitHub","VS Code","Vercel"],
+      icon: "https://themefisher.com/blog-thumb/bootstrap-admin-dashboard-templates.webp", // ← YOUR IMAGE PATH
+      githubLink: "https://github.com/fathimafidampz-ai/admin-app.git",
     },
     {
       title: "Car Dealership App",
       description:
         "Full-stack car dealership management system with inventory, appointments, and financing tools.",
-      technologies: ["Next.js", "TypeScript", "SQL", "Tailwind CSS"],
-      image: "🚗",
-      githubLink: "#",
+      technologies: ["HTML5", "CSS3", "JavaScript", "React", "Node.js", "Django","REST APIs","Docker","Git/GitHub","CI/CD pipelines"," IBM Cloud"],
+      icon: "/images/car dealership.jpg", // ← YOUR IMAGE PATH
+      githubLink: "https://github.com/fathimafidampz-ai/xrwvm-fullstack_developer_capstone.git",
     },
     {
       title: "Nursery Plant Website",
       description:
-        "E-commerce platform for plant nursery with cart, search, filters, and order management.",
+        "E-commerce platform for plant nursery featuring shopping cart, product search, category filters, inventory browsing, and order management.",
       technologies: [
         "HTML5",
         "CSS3",
@@ -70,28 +70,27 @@ export default function Projects() {
         "Express",
         "MongoDB",
       ],
-      image: "🌱",
-      githubLink: "#",
+      icon: "https://img.pikbest.com/origin/09/28/10/70npIkbEsTzPp.png!sw800", // ← YOUR IMAGE PATH
+      githubLink: "https://github.com/fathimafidampz-ai/plant-store.git",
     },
     {
       title: "Quiz App",
       description:
-        "Interactive quiz app with timer, score tracking, difficulty levels, and analytics.",
+        "Interactive quiz app with score tracking, difficulty levels, and analytics.",
       technologies: ["JavaScript", "HTML5", "CSS3"],
-      image: "📝",
-      githubLink: "#",
+      icon: "/images/cartoon quizapp.avif", // ← YOUR IMAGE PATH
+      githubLink: "https://github.com/fathimafidampz-ai/quiz-app-proj.git",
     },
     {
       title: "Personal Portfolio",
       description: "Modern portfolio built with animations and responsive UI.",
       technologies: ["Next.js", "Tailwind CSS", "TypeScript"],
-      image: "💼",
-      githubLink: "#",
+      icon: "/images/personal portfolio.jpg", // ← YOUR IMAGE PATH
+      githubLink: "https://github.com/fathimafidampz-ai/personal-portfolio.git",
     },
   ];
 
   return (
-    /* 🔥 PAGE TRANSITION */
     <motion.section
       id="projects"
       className="relative section-container bg-white dark:bg-gray-900 overflow-hidden"
@@ -101,8 +100,6 @@ export default function Projects() {
       transition={{ duration: 0.6, ease: "easeInOut" }}
     >
       <div className="relative z-10">
-
-        {/* HEADER */}
         <div
           ref={headerRef}
           className={`text-center mb-16 ${
@@ -117,7 +114,6 @@ export default function Projects() {
           </p>
         </div>
 
-        {/* PROJECTS GRID */}
         <motion.div
           ref={projectsRef}
           className="grid grid-cols-1 md:grid-cols-2 gap-8"
@@ -131,13 +127,12 @@ export default function Projects() {
               title={project.title}
               description={project.description}
               technologies={project.technologies}
-              icon={project.image}
+              icon={project.icon}
               githubLink={project.githubLink}
             />
           ))}
         </motion.div>
 
-        {/* GITHUB CTA */}
         <motion.div
           className="mt-16 text-center"
           initial={{ opacity: 0, scale: 0.95 }}
@@ -153,7 +148,6 @@ export default function Projects() {
             View All Projects on GitHub
           </a>
         </motion.div>
-
       </div>
     </motion.section>
   );

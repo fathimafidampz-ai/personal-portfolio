@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import ContactForm from "../ui/contact-form";
-import { FaEnvelope, FaGithub, FaLinkedin, FaPhoneAlt, FaMapMarkerAlt, FaGlobe } from "react-icons/fa";
+import { FaEnvelope, FaGithub, FaLinkedin, FaPhoneAlt, FaMapMarkerAlt, FaGlobe, FaWhatsapp } from "react-icons/fa";
 
 export default function Contact() {
   const [headerVisible, setHeaderVisible] = useState(false);
@@ -91,6 +91,7 @@ export default function Contact() {
                     <p className="text-gray-600 dark:text-gray-400">+91 9048935240</p>
                   </div>
                 </a>
+                
 
                 <div className="flex items-start p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
                   <FaMapMarkerAlt className="text-3xl mr-4 text-red-500" />
@@ -118,6 +119,10 @@ export default function Contact() {
                 <a href="#home" className="flex items-center justify-center p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-orange-400 dark:hover:border-orange-500 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
                   <FaGlobe className="text-3xl mr-3 text-orange-600" />
                   <span className="font-semibold text-gray-900 dark:text-white">Portfolio</span>
+                </a>
+                <a href="https://wa.me/919048935240" className="flex items-center justify-center p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-orange-400 dark:hover:border-orange-500 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                  <FaWhatsapp className="text-3xl mr-3 text-green-600" />
+                  <span className="font-semibold text-gray-900 dark:text-white">WhatsApp</span>
                 </a>
               </div>
             </div>

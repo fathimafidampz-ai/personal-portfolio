@@ -1,5 +1,5 @@
 import React from "react";
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -100,6 +100,14 @@ export default function Footer() {
                 className="text-gray-400 hover:text-orange-400 transition-colors duration-200 hover:scale-110 transform"
               >
                 <FaLinkedin size={24} />
+              </a>
+              <a
+                href="https://wa.me/919048935240"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-orange-400 transition-colors duration-200 hover:scale-110 transform"
+              >
+                <FaWhatsapp size={24} />
               </a>
               
             </div>

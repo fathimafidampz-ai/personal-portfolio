@@ -1,14 +1,13 @@
 "use client";
 
-import React, { ReactNode } from "react"; 
-
+import React from "react";
+import Image from "next/image";
 
 interface ProjectCardProps {
   title: string;
   description: string;
   technologies: string[];
-  icon: ReactNode;
-
+  icon: string; // Can be emoji OR image path
   githubLink: string;
 }
 
@@ -19,19 +18,32 @@ export default function ProjectCard({
   icon,
   githubLink,
 }: ProjectCardProps) {
+  // Check if icon is an image path or emoji
+  const isImagePath = icon.startsWith("/") || icon.startsWith("http");
+
   return (
     <div className="group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-orange-400 dark:hover:border-orange-500 transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/20 hover:-translate-y-2">
       
-      {/* Project Image */}
+      {/* Project Image/Icon */}
       <div className="relative h-64 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 dark:from-gray-700 dark:via-gray-600 dark:to-gray-500 overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-6xl">{icon}</span>
-        </div>
+        
+        {/* Show actual image if path provided, otherwise show emoji */}
+        {isImagePath ? (
+          <Image
+            src={icon}
+            alt={title}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center text-8xl">
+            {icon}
+          </div>
+        )}
         
         {/* Overlay on hover */}
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-          
-            <a
+          <a
             href={githubLink}
             target="_blank"
             rel="noopener noreferrer"
