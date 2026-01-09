@@ -78,7 +78,7 @@ export default function Projects() {
       description:
         "Interactive quiz app with score tracking, difficulty levels, and analytics.",
       technologies: ["JavaScript", "HTML5", "CSS3"],
-      icon: "/images/cartoon quizapp.avif", // ← YOUR IMAGE PATH
+      icon: "https://img.freepik.com/premium-vector/cartoon-people-quiz-game-show-concept-vector_287964-3234.jpg", // ← YOUR IMAGE PATH
       githubLink: "https://github.com/fathimafidampz-ai/quiz-app-proj.git",
     },
     {
