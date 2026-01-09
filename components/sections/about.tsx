@@ -158,9 +158,9 @@ export default function About() {
 
               <p>
                 I have experience working with{" "}
-                <span className="font-semibold text-amber-600 dark:text-amber-400">RESTful APIs</span>,
-                CRUD operations, authentication, and version control using{" "}
-                <span className="font-semibold">Git & GitHub</span>. I'm also familiar with Docker
+                <span className="font-semibold text-amber-600 dark:text-amber-400">RESTful APIs</span>
+                , CRUD operations, authentication, and version control using{" "}
+                <span className="font-semibold">Git & GitHub</span>. I&apos;m also familiar with Docker
                 basics, cloud fundamentals, and deployment workflows.
               </p>
 

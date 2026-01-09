@@ -1,42 +1,29 @@
-"use client";
-
 import { useEffect, useRef, useState } from "react";
 
-/**
- * Scroll reveal hook that triggers every time
- * Element enters and exits viewport
- */
-export function useScrollReveal(direction: "left" | "right" | "up" = "up") {
-  const ref = useRef<HTMLDivElement>(null);
+export function useScrollReveal(threshold = 0.1) {
   const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const element = ref.current; // Copy ref to variable
+    
+    if (!element) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Trigger animation when entering viewport
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        } else {
-          // Reset when leaving viewport
-          setIsVisible(false);
-        }
+        setIsVisible(entry.isIntersecting);
       },
-      {
-        threshold: 0.1, // Trigger when 10% visible
-        rootMargin: "0px 0px -100px 0px", // Start animation earlier
-      }
+      { threshold }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
+    observer.observe(element);
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (element) {
+        observer.unobserve(element); // Use the copied variable
       }
     };
-  }, []);
+  }, [threshold]);
 
-  return { ref, isVisible, direction };
+  return { ref, isVisible };
 }
